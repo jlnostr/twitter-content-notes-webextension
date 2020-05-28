@@ -1,8 +1,4 @@
-class TweetInformation {
-    public hasContentNote: boolean;
-    public contentNote: string;
-    public containers: HTMLElement[] = [];
-}
+import TweetInformation from "./models/TweetInformation";
 
 function test() {
     var tweets = document.getElementsByTagName("article");

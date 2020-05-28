@@ -3,7 +3,7 @@ import { CONTENT_NOTE_REGEX } from "./constants";
 
 export function parseTweetContainer(node: HTMLElement): TweetInformation {
     const divs = node.getElementsByTagName("div");
-    let contentContainers: HTMLElement[];
+    let contentContainers: HTMLElement[] = [];
 
     for (var j = 0; j < divs.length; j++) {
         var t = divs[j];
@@ -34,10 +34,12 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
     if (!hasContentNote) return;
 
     // Combine all content notes into a single string
-    let contentNotes : string[] = [];
+    let contentNotes: string[] = [];
 
     contentContainers.forEach(c => {
         var match = CONTENT_NOTE_REGEX.exec(c.innerText);
+        if (match == null)
+            return;
 
         contentNotes.push(match[1]);
 

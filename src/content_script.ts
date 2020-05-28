@@ -3,7 +3,7 @@ import { parseTweetContainer } from "./parseTweetContainer";
 import TweetInformation from "./models/TweetInformation";
 
 export function findAndTagTweets() {
-    var tweets = document.getElementsByTagName("article");
+    const tweets = document.getElementsByTagName("article");
 
     for (let i = 0; i < tweets.length; i++) {
         const tweet = tweets[i];
@@ -25,7 +25,7 @@ export function findAndTagTweets() {
         // Hide all tweets behind a warning
         const btn = createButton(tweetInfo);
 
-        var firstContainer = tweetInfo.containers[0];
+        const firstContainer = tweetInfo.containers[0];
         firstContainer.parentElement.insertBefore(btn, firstContainer);
     }
 }

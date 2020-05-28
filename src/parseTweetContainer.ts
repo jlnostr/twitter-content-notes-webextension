@@ -3,6 +3,7 @@ import { CONTENT_NOTE_REGEX } from "./constants";
 
 export function parseTweetContainer(node: HTMLElement): TweetInformation {
     const divs = node.getElementsByTagName("div");
+    const anchors = node.getElementsByTagName("a");
 
     // HTML elements that could have texts, and therefore content notes
     let contentContainers: HTMLElement[] = [];
@@ -10,8 +11,8 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
     // HTML elements that only show images/videos and need to be hidden
     let mediaContainers: HTMLElement[] = [];
 
-    for (var j = 0; j < divs.length; j++) {
-        var t = divs[j];
+    for (let j = 0; j < divs.length; j++) {
+        const t = divs[j];
 
         /**
          * Explanation: Every tweet contains the "lang" attribute. This applies to regular tweets as well
@@ -24,7 +25,6 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
 
         // Applies to quoted media retweets
         if (t.hasAttribute("role") && t.attributes["role"].value == "blockquote") {
-            console.log("adding ", t)
             mediaContainers.push(t);
         }
     }
@@ -48,7 +48,7 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
     let contentNotes: string[] = [];
 
     contentContainers.forEach(c => {
-        var match = CONTENT_NOTE_REGEX.exec(c.innerText);
+        const match = CONTENT_NOTE_REGEX.exec(c.innerText);
         if (match == null)
             return;
 
@@ -59,7 +59,7 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
     });
 
     // Build the result
-    var result = new TweetInformation();
+    let result = new TweetInformation();
     result.containers = [...contentContainers, ...mediaContainers];
     result.hasContentNote = hasContentNote;
     result.contentNote = contentNotes.join("; ");

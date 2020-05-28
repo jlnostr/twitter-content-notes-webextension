@@ -47,4 +47,12 @@ function createButton(tweet: TweetInformation): HTMLButtonElement {
     return btn;
 }
 
-findAndTagTweets();
+// Select the node that will be observed for mutations
+const targetNode = document.getElementById("react-root");
+const observer = new MutationObserver(() => findAndTagTweets());
+
+// Start observing the target node for configured mutations
+observer.observe(targetNode, {
+    childList: true,
+    subtree: true
+});

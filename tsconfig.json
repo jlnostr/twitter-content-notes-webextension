@@ -3,12 +3,11 @@
         "target": "ES6",
         "module": "commonjs",
         "sourceMap": false,
-        "outDir": "output",
-
+        "outDir": "dist/js",
+        "noEmitOnError": true,
         // You have to explicitly set @types to get DefinitelyTyped type definitions
         "typeRoots": [
-            "node_modules/@types",
-            "node_modules/web-ext-types"
+            "node_modules/@types"
         ],
     },
     "include": [

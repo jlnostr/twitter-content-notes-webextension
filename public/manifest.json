@@ -12,7 +12,7 @@
         "*://twitter.com/*"
       ],
       "js": [
-        "main.js"
+        "js/content_script.js"
       ]
     }
   ]

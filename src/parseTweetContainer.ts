@@ -3,7 +3,12 @@ import { CONTENT_NOTE_REGEX } from "./constants";
 
 export function parseTweetContainer(node: HTMLElement): TweetInformation {
     const divs = node.getElementsByTagName("div");
+
+    // HTML elements that could have texts, and therefore content notes
     let contentContainers: HTMLElement[] = [];
+
+    // HTML elements that only show images/videos and need to be hidden
+    let mediaContainers: HTMLElement[] = [];
 
     for (var j = 0; j < divs.length; j++) {
         var t = divs[j];
@@ -15,6 +20,12 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
          */
         if (t.hasAttribute("lang")) {
             contentContainers.push(t);
+        }
+
+        // Applies to quoted media retweets
+        if (t.hasAttribute("role") && t.attributes["role"].value == "blockquote") {
+            console.log("adding ", t)
+            mediaContainers.push(t);
         }
     }
 
@@ -49,7 +60,7 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
 
     // Build the result
     var result = new TweetInformation();
-    result.containers = contentContainers;
+    result.containers = [...contentContainers, ...mediaContainers];
     result.hasContentNote = hasContentNote;
     result.contentNote = contentNotes.join("; ");
     return result;

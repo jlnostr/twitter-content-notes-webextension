@@ -38,6 +38,9 @@ function createButton(tweet: TweetInformation): HTMLButtonElement {
         isShown = !isShown;
     }
 
+    // Run first execution to hide the tweet content by default
+    switchVisibility();
+
     let btn = document.createElement("button");
     btn.style.marginBottom = "1em";
     btn.style.padding = ".5em";

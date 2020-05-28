@@ -3,11 +3,17 @@
   "name": "Twitter Content Warning Extension",
   "description": "This extension will hide sensitive tweets with content warnings/notes behind a mask.",
   "version": "1.0",
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
   "permissions": [
-    "activeTab"
+    "*://twitter.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://twitter.com/*"
+      ],
+      "js": [
+        "main.js"
+      ]
+    }
   ]
 }

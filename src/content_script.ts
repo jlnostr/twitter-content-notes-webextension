@@ -42,6 +42,8 @@ function createButton(tweet: TweetInformation): HTMLButtonElement {
     let btn = document.createElement("button");
     btn.style.marginBottom = "1em";
     btn.style.padding = ".5em";
+    btn.style.fontFamily = "system-ui";
+    btn.style.cursor = "pointer";
     btn.innerText = tweet.contentNote;
     btn.onclick = switchVisibility;
 

@@ -3,13 +3,12 @@ import { CONTENT_NOTE_REGEX } from "./constants";
 
 export function parseTweetContainer(node: HTMLElement): TweetInformation {
     const divs = node.getElementsByTagName("div");
-    const anchors = node.getElementsByTagName("a");
 
     // HTML elements that could have texts, and therefore content notes
-    let contentContainers: HTMLElement[] = [];
+    let textContainers: HTMLElement[] = [];
 
-    // HTML elements that only show images/videos and need to be hidden
-    let mediaContainers: HTMLElement[] = [];
+    // The final element that should be hidden.
+    let elemToHide: HTMLElement = null;
 
     for (let j = 0; j < divs.length; j++) {
         const t = divs[j];
@@ -20,21 +19,23 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
          * In the latter, there will be two content containers.
          */
         if (t.hasAttribute("lang")) {
-            contentContainers.push(t);
+            textContainers.push(t);
         }
 
-        // Applies to quoted media retweets
-        if (t.hasAttribute("role") && t.attributes["role"].value == "blockquote") {
-            mediaContainers.push(t);
+        // The <div> with the role="group" attribute contains the counters for
+        // likes and retweets. The parent element is the whole tweet.
+        if (t.hasAttribute("role") && t.attributes["role"].value == 'group') {
+            elemToHide = t.parentElement;
+            break;
         }
     }
 
     // should not happen, but if it does, simply return
-    if (contentContainers.length == 0) return;
+    if (textContainers.length == 0) return;
 
     // find out, if the tweet contains a content note
     let hasContentNote: boolean = false;
-    contentContainers.forEach(c => {
+    textContainers.forEach(c => {
         if (hasContentNote)
             return;
 
@@ -47,7 +48,7 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
     // Combine all content notes into a single string
     let contentNotes: string[] = [];
 
-    contentContainers.forEach(c => {
+    textContainers.forEach(c => {
         const match = CONTENT_NOTE_REGEX.exec(c.innerText);
         if (match == null)
             return;
@@ -60,7 +61,7 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
 
     // Build the result
     let result = new TweetInformation();
-    result.containers = [...contentContainers, ...mediaContainers];
+    result.container = elemToHide;
     result.hasContentNote = hasContentNote;
     result.contentNote = contentNotes.join("; ");
     return result;

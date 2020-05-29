@@ -24,9 +24,7 @@ export function findAndTagTweets() {
 
         // Hide all tweets behind a warning
         const btn = createButton(tweetInfo);
-
-        const firstContainer = tweetInfo.containers[0];
-        firstContainer.parentElement.insertBefore(btn, firstContainer);
+        tweetInfo.container.parentElement.insertBefore(btn, tweetInfo.container);
     }
 }
 
@@ -34,7 +32,7 @@ function createButton(tweet: TweetInformation): HTMLButtonElement {
     let isShown = false;
     let switchVisibility = () => {
         let displayValue = isShown ? "block" : "none";
-        tweet.containers.forEach(c => c.style.display = displayValue);
+        tweet.container.style.display = displayValue;
         isShown = !isShown;
     }
 

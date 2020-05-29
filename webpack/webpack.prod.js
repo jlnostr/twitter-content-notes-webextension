@@ -9,7 +9,6 @@ module.exports = merge(common, {
     mode: 'production',
     plugins: [
         new ZipPlugin({
-            include: ["dist/"],
             path: rootPath + "/zip/",
             filename: `extension-v${manifest.version}.zip`,
         })

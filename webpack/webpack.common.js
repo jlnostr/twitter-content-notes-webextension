@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const srcDir = '../src/';
@@ -8,8 +7,8 @@ module.exports = {
         content_script: path.join(__dirname, srcDir + 'content_script.ts')
     },
     output: {
-        path: path.join(__dirname, '../dist/js'),
-        filename: '[name].js'
+        path: path.join(__dirname, '../dist/'),
+        filename: 'js/[name].js'
     },
     optimization: {
         splitChunks: {
@@ -30,12 +29,8 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js']
     },
     plugins: [
-        // exclude locale files in moment
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new CopyPlugin({
-            patterns: [
-                { from: '.', to: '../', context: 'public' }
-            ]
+            patterns: [{ from: "public/" }]
         }),
     ]
 };

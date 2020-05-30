@@ -31,7 +31,7 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
     }
 
     // should not happen, but if it does, simply return
-    if (textContainers.length == 0) return;
+    if (textContainers.length == 0 || elemToHide == null) return;
 
     // find out, if the tweet contains a content note
     let hasContentNote: boolean = false;

@@ -6,6 +6,10 @@
   "permissions": [
     "*://twitter.com/*"
   ],
+  "icons": {
+    "48": "icon.png",
+    "96": "icon@2x.png"
+  },
   "content_scripts": [
     {
       "matches": [

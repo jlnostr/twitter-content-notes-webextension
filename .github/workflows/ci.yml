@@ -26,7 +26,6 @@ jobs:
 
     - name: Install dependencies
       run: yarn --frozen-lockfile
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
 
     # Runs a single command using the runners shell
     - name: Build the extension

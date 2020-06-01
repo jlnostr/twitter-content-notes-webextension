@@ -14,11 +14,14 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
 		const t = divs[j];
 
 		/**
-		 * Explanation: Every tweet contains the "lang" attribute. This applies to regular tweets as well
+		 * Explanation: Every tweet in the timeline contains the "lang" attribute. This applies to regular tweets as well
 		 * as the tweet of a quoted retweet. So "hi there" is a separate div from "Check out this content <link to another tweet>".
 		 * In the latter, there will be two content containers.
+		 *
+		 * In case of direct tweet pages, like https://twitter.com/user/status/id, this attribute is not always given.
+		 * The dir attribute is used as a fallback in this case.
 		 */
-		if (t.hasAttribute("lang")) {
+		if (t.hasAttribute("lang") || (t.hasAttribute("dir") && t.attributes["dir"].value == "auto")) {
 			textContainers.push(t);
 		}
 

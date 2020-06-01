@@ -58,6 +58,10 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
 	const result = new TweetInformation();
 	result.container = elemToHide;
 	result.hasContentNote = hasContentNote;
-	result.contentNote = contentNotes.join("; ");
+	result.contentNote = combineContentNotes(contentNotes);
 	return result;
+}
+
+export function combineContentNotes(contentNotes: string[]): string {
+	return contentNotes.join("; ");
 }

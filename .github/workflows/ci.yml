@@ -27,7 +27,9 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      # Runs a single command using the runners shell
+      - name: Test
+        run: yarn test
+
       - name: Build the extension
         run: yarn run build
 

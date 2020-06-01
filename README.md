@@ -1,5 +1,8 @@
 # twitter-content-notes-webextension
 
+[![Mozilla Addon](https://img.shields.io/amo/v/twitter-content-warning-button?color=%23)](https://addons.mozilla.org/de/firefox/addon/twitter-content-warning-button/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/odmdlhkakdkidfcpaalkpgbmkaoclmkh?color=%23)](https://chrome.google.com/webstore/detail/twitter-content-warning-b/odmdlhkakdkidfcpaalkpgbmkaoclmkh)
+
 This webextension hides tweets with a content note/warning behind a button. Supported patterns are:
 
 - TW

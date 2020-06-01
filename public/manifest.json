@@ -1,23 +1,17 @@
 {
-  "manifest_version": 2,
-  "name": "Twitter Content Warning Buttons",
-  "description": "This extension will hide sensitive tweets with content warnings/notes behind a mask.",
-  "version": "0.2",
-  "permissions": [
-    "*://twitter.com/*"
-  ],
-  "icons": {
-    "48": "icon.png",
-    "96": "icon@2x.png"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://twitter.com/*"
-      ],
-      "js": [
-        "js/content_script.js"
-      ]
-    }
-  ]
+	"manifest_version": 2,
+	"name": "Twitter Content Warning Buttons",
+	"description": "This extension will hide sensitive tweets with content warnings/notes behind a mask.",
+	"version": "0.2",
+	"permissions": ["*://twitter.com/*"],
+	"icons": {
+		"48": "icon.png",
+		"96": "icon@2x.png"
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://twitter.com/*"],
+			"js": ["js/content_script.js"]
+		}
+	]
 }

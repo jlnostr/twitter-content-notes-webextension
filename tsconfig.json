@@ -1,17 +1,12 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "module": "commonjs",
-        "sourceMap": false,
-        "outDir": "dist/js",
-        "noEmitOnError": true,
-        // You have to explicitly set @types to get DefinitelyTyped type definitions
-        "typeRoots": [
-            "node_modules/@types",
-            "node_modules/web-ext-types"
-        ],
-    },
-    "include": [
-        "src/**/*.ts"
-    ]
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "commonjs",
+		"sourceMap": false,
+		"outDir": "dist/js",
+		"noEmitOnError": true,
+		// You have to explicitly set @types to get DefinitelyTyped type definitions
+		"typeRoots": ["node_modules/@types", "node_modules/web-ext-types"]
+	},
+	"include": ["src/**/*.ts"]
 }

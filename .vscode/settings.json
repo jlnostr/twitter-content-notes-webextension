@@ -9,5 +9,8 @@
         "**/zip": true,
         "**/*.afdesign": true,
         "yarn.lock": true
-    }
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }

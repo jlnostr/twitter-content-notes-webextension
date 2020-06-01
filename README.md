@@ -24,15 +24,15 @@ There are several tools needed for development:
 
 ### Watch mode for development
 
-    yarn run watch
+    yarn watch
 
 ### Production
 
 When compiling for production, run:
 
-    yarn run build
+    yarn build
 
-This will generate a ZIP file in `zip/extension-<VERSION>.zip`.
+This will generate a ZIP file in `zip/extension.zip`.
 
 ## License
 

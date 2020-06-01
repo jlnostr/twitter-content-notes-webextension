@@ -52,9 +52,6 @@ export function parseTweetContainer(node: HTMLElement): TweetInformation {
 		if (match == null) return;
 
 		contentNotes.push(match[1]);
-
-		// TODO: Remove the CN line from the original tweet
-		// c.innerText = (<string>c.innerText).replace(match[0], "").trim();
 	});
 
 	// Build the result

@@ -1,8 +1,9 @@
-import { combineContentNotes, getKeywords } from "./parseTweetContainer";
+import TweetContainer from "./TweetContainer";
 
 test("content notes are combined", () => {
 	const input = ["first", "second"];
-	const result = combineContentNotes(input);
+	const sut = new TweetContainer(null);
+	const result = sut.combineContentNotes(input);
 
 	expect(result).toBe("first, second");
 });
@@ -14,7 +15,8 @@ describe.each([
 	[["my test", "my test"], "my test"],
 ])("duplicates", (input, expectedOutput) => {
 	test("are removed", () => {
-		expect(combineContentNotes(input)).toBe(expectedOutput);
+		const sut = new TweetContainer(null);
+		expect(sut.combineContentNotes(input)).toBe(expectedOutput);
 	});
 });
 
@@ -23,6 +25,8 @@ describe.each([
 	["racism, police", ["racism", "police"]],
 	["racism,      police", ["racism", "police"]],
 ])("export contains valid", (input, expectedOutput) => {
-	const result = getKeywords(input);
+	const sut = new TweetContainer(null);
+
+	const result = sut.getUniqueContentNotes(input);
 	expect(result).toStrictEqual(expectedOutput);
 });
